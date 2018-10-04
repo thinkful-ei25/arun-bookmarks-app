@@ -23,8 +23,8 @@ const bookmarks = (function bookmarksModule() {
   function renderBookmark(bookmark) {
     return `
       <li>
-        <article class="bookmark" data-bookmark-id="${bookmark.id}">
-          <header>
+        <article class="bookmark js-bookmark" data-bookmark-id="${bookmark.id}">
+          <header class="js-bookmark__header">
             <h2>${bookmark.title}</h2>
             <section class="bookmark-rating">
               ${generateRatingStars(bookmark.rating)}
@@ -99,8 +99,24 @@ const bookmarks = (function bookmarksModule() {
     });
   }
 
+  function getIDFromElement(element) {
+    return $(element).closest('.js-bookmark').attr('data-bookmark-id');
+  }
+
+  function bindDetailedViewController() {
+    $('.js-app').on('click', '.js-bookmark__header', (event) => {
+      const id = getIDFromElement(event.currentTarget);
+      store.toggleExpandedForID(id);
+      render();
+    });
+  }
+
+  function bindControllers() {
+    bindDetailedViewController();
+  }
+
   return {
     fetchBookmarks,
-    render,
+    bindControllers,
   };
 })();

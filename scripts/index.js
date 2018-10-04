@@ -4,6 +4,7 @@
 
 function main() {
   bookmarks.fetchBookmarks();
+  bookmarks.bindControllers();
 }
 
 $(main);
