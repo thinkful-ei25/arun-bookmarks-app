@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,54 +9,65 @@
   <meta description="Keep track of your favorite sites and rate them ephemerally">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
     crossorigin="anonymous">
+  <link rel="stylesheet" href="main.css">
 </head>
+
 <body>
-  <header role="heading">
-    <h1>Arun's Bookmarks</h1>
-  </header>
-  <section class="controls">
-    <button>Add Bookmark</button>
-    <select>
-      <option value="">Filter by rating</option>
-      <option value="1">&gt;1</option>
-      <option value="2">&gt;2</option>
-      <option value="3">&gt;3</option>
-      <option value="4">&gt;4</option>
-    </select>
-  </section>
-  <section class="bookmark display">
-    <ul>
-      <li>
-        <header><h2>Item 1</h2></header>
-        <section class="rating">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="far fa-star"></i>
-          <i class="far fa-star"></i>
-        </section>
-      </li>
-      <li>
-        <header><h2>Item 2</h2></header>
-        <section class="rating">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="far fa-star"></i>
-        </section>
-      </li>
-      <li>
-        <header><h2>Item 3</h2></header>
-        <section class="rating">
-          <i class="fas fa-star"></i>
-          <i class="far fa-star"></i>
-          <i class="far fa-star"></i>
-          <i class="far fa-star"></i>
-          <i class="far fa-star"></i>
-        </section>
-      </li>
-    </ul>
-  </section>
+  <main role="main">
+    <header role="heading">
+      <h1>Arun's Bookmarks</h1>
+    </header>
+    <section class="controls">
+      <button>Add Bookmark</button>
+      <select>
+        <option value="">Filter by rating</option>
+        <option value="1">&gt;1</option>
+        <option value="2">&gt;2</option>
+        <option value="3">&gt;3</option>
+        <option value="4">&gt;4</option>
+      </select>
+    </section>
+    <section class="bookmark display">
+      <ul>
+        <li>
+          <header>
+            <h2>Item 1</h2>
+          </header>
+          <section class="rating">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="far fa-star"></i>
+            <i class="far fa-star"></i>
+          </section>
+        </li>
+        <li>
+          <header>
+            <h2>Item 2</h2>
+          </header>
+          <section class="rating">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="far fa-star"></i>
+          </section>
+        </li>
+        <li>
+          <header>
+            <h2>Item 3</h2>
+          </header>
+          <section class="rating">
+            <i class="fas fa-star"></i>
+            <i class="far fa-star"></i>
+            <i class="far fa-star"></i>
+            <i class="far fa-star"></i>
+            <i class="far fa-star"></i>
+          </section>
+        </li>
+      </ul>
+    </section>
+  </main>
 </body>
+
 </html>
