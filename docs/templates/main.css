@@ -1,0 +1,25 @@
+form {
+  max-width: 50em;
+}
+
+.form-element {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex-start;
+  align-content: center;
+}
+
+.form-element > label {
+  flex: 1 0 5em;
+  max-width: 7em;
+}
+
+.form-element > input[type="text"],
+.form-element > input[type="url"],
+.form-element > textarea {
+  flex: 1 0 auto;
+} 
+
+.form-element > input[type="number"] {
+  flex: 1 0 content;
+}
