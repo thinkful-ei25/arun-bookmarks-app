@@ -23,3 +23,7 @@ form {
 .form-element > input[type="number"] {
   flex: 1 0 content;
 }
+
+.flash-error {
+  color: red;
+}
