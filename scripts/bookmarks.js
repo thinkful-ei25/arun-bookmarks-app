@@ -91,7 +91,9 @@ const bookmarks = (function bookmarksModule() {
     `;
   }
 
-  function renderCreateBookmarkView() {}
+  function renderCreateBookmarkView() {
+    return null;
+  }
 
   function render() {
     let html = null;
@@ -143,9 +145,19 @@ const bookmarks = (function bookmarksModule() {
     });
   }
 
+  function onClickAddButton() {
+    store.setMode(store.MODES.CREATE_BOOKMARK);
+    render();
+  }
+
+  function bindAddBookmarkController() {
+    $('.js-app').on('click', '.js-add-bookmark', onClickAddButton);
+  }
+
   function bindControllers() {
     bindDetailedViewController();
     bindFilterController();
+    bindAddBookmarkController();
   }
 
   return {

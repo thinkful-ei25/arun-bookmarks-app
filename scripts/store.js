@@ -24,6 +24,10 @@ const store = (function storeModule() {
     this.filters.minRating = rating || 0;
   }
 
+  function setMode(mode) {
+    this.mode = mode;
+  }
+
   return {
     MODES,
     MAX_RATING: 5,
@@ -35,5 +39,6 @@ const store = (function storeModule() {
     setBookmarks,
     toggleExpandedForID,
     setMinRating,
+    setMode,
   };
 }());
