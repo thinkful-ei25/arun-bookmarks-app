@@ -50,7 +50,7 @@ const bookmarks = (function bookmarksModule() {
       <section class="display-controls">
         <button class="js-add-bookmark" type="button">Add Bookmark</button>
         <select class="js-ratings-filter">
-          <option value="">Filter by rating</option>
+          <option value="0">Filter by rating</option>
           <option value="1">&gt; 1</option>
           <option value="2">&gt; 2</option>
           <option value="3">&gt; 3</option>
@@ -61,7 +61,10 @@ const bookmarks = (function bookmarksModule() {
   }
 
   function renderBookmarksList() {
-    const bookmarkElements = store.bookmarks.map(renderBookmark).join('');
+    const bookmarkElements = store.bookmarks
+      .filter(bookmark => bookmark.rating > store.filters.minRating)
+      .map(renderBookmark)
+      .join('');
 
     return `
       <section class="bookmark-list">
@@ -110,7 +113,9 @@ const bookmarks = (function bookmarksModule() {
   }
 
   function getIDFromElement(element) {
-    return $(element).closest('.js-bookmark').attr('data-bookmark-id');
+    return $(element)
+      .closest('.js-bookmark')
+      .attr('data-bookmark-id');
   }
 
   function bindDetailedViewController() {
@@ -121,8 +126,17 @@ const bookmarks = (function bookmarksModule() {
     });
   }
 
+  function bindFilterController() {
+    $('.js-app').on('change', '.js-ratings-filter', (event) => {
+      const value = $(event.currentTarget).val();
+      store.setMinRating(parseInt(value, 10));
+      render();
+    });
+  }
+
   function bindControllers() {
     bindDetailedViewController();
+    bindFilterController();
   }
 
   return {
