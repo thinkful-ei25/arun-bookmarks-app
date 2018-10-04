@@ -1,0 +1,16 @@
+extends: airbnb-base
+
+parserOptions:
+  sourceType: script
+
+env:
+  browser: true
+  jquery: true
+
+rules:
+  strict:
+    - error
+    - safe
+  wrap-iife:
+    - error
+    - any
