@@ -4,8 +4,6 @@
 
 // eslint-disable-next-line no-unused-vars
 const bookmarks = (function bookmarksModule() {
-  const MAX_STARS = 5;
-
   function generateRatingStars(numStars) {
     const stars = [];
 
@@ -13,7 +11,7 @@ const bookmarks = (function bookmarksModule() {
       stars.push('<i class="fas fa-star"></i>');
     }
 
-    for (let i = 0; i < MAX_STARS - numStars; i += 1) {
+    for (let i = 0; i < store.MAX_RATING - numStars; i += 1) {
       stars.push('<i class="far fa-star"></i>');
     }
 
@@ -45,16 +43,27 @@ const bookmarks = (function bookmarksModule() {
     `;
   }
 
+  function renderDropdownOptions() {
+    const options = [];
+
+    for (let i = 0; i < store.MAX_RATING; i += 1) {
+      const selected = store.filters.minRating === i;
+      const text = i === 0 ? 'Filter by Rating' : `&gt; ${i}`;
+      const option = `
+        <option value="${i}" ${selected ? 'selected' : ''}>${text}</option>
+      `;
+      options.push(option);
+    }
+
+    return options.join('');
+  }
+
   function renderDisplayControls() {
     return `
       <section class="display-controls">
         <button class="js-add-bookmark" type="button">Add Bookmark</button>
         <select class="js-ratings-filter">
-          <option value="0">Filter by rating</option>
-          <option value="1">&gt; 1</option>
-          <option value="2">&gt; 2</option>
-          <option value="3">&gt; 3</option>
-          <option value="4">&gt; 4</option>
+          ${renderDropdownOptions()}
         </select>
       </section>
     `;

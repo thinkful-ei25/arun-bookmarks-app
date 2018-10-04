@@ -26,6 +26,7 @@ const store = (function storeModule() {
 
   return {
     MODES,
+    MAX_RATING: 5,
 
     bookmarks: [],
     mode: MODES.DISPLAY,
