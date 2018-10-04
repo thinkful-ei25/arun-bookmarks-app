@@ -61,7 +61,10 @@ const bookmarks = (function bookmarksModule() {
   }
 
   function renderBookmarksList() {
-    const bookmarkElements = store.bookmarks.map(renderBookmark).join('');
+    const bookmarkElements = store.bookmarks
+      .filter(bookmark => bookmark.rating > store.filters.minRating)
+      .map(renderBookmark)
+      .join('');
 
     return `
       <section class="bookmark-list">
@@ -110,7 +113,9 @@ const bookmarks = (function bookmarksModule() {
   }
 
   function getIDFromElement(element) {
-    return $(element).closest('.js-bookmark').attr('data-bookmark-id');
+    return $(element)
+      .closest('.js-bookmark')
+      .attr('data-bookmark-id');
   }
 
   function bindDetailedViewController() {
@@ -125,6 +130,7 @@ const bookmarks = (function bookmarksModule() {
     $('.js-app').on('change', '.js-ratings-filter', (event) => {
       const value = $(event.currentTarget).val();
       store.setMinRating(parseInt(value, 10));
+      render();
     });
   }
 
