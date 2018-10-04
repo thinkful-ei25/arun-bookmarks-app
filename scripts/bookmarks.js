@@ -20,16 +20,26 @@ const bookmarks = (function bookmarksModule() {
     return stars.join('');
   }
 
+  function renderExpandedBookmark(bookmark) {
+    const description = bookmark.description ? `<p>${bookmark.description}</p>` : '';
+    return `
+      ${description}
+      <a href="${bookmark.url}"><button type="button">Visit Site</button></a>
+      <button type="button"><i class="far fa-trash-alt"></i></button>
+    `;
+  }
+
   function renderBookmark(bookmark) {
     return `
       <li>
-        <article class="bookmark" data-bookmark-id="${bookmark.id}">
-          <header>
+        <article class="bookmark js-bookmark" data-bookmark-id="${bookmark.id}">
+          <header class="js-bookmark__header">
             <h2>${bookmark.title}</h2>
             <section class="bookmark-rating">
               ${generateRatingStars(bookmark.rating)}
             </section>
           </header>
+          ${bookmark.isExpanded ? renderExpandedBookmark(bookmark) : ''}
         </article>
       </li>
     `;
@@ -99,8 +109,24 @@ const bookmarks = (function bookmarksModule() {
     });
   }
 
+  function getIDFromElement(element) {
+    return $(element).closest('.js-bookmark').attr('data-bookmark-id');
+  }
+
+  function bindDetailedViewController() {
+    $('.js-app').on('click', '.js-bookmark__header', (event) => {
+      const id = getIDFromElement(event.currentTarget);
+      store.toggleExpandedForID(id);
+      render();
+    });
+  }
+
+  function bindControllers() {
+    bindDetailedViewController();
+  }
+
   return {
     fetchBookmarks,
-    render,
+    bindControllers,
   };
 })();
