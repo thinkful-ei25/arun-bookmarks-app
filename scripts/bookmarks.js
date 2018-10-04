@@ -93,9 +93,8 @@ const bookmarks = (function bookmarksModule() {
   }
 
   function fetchBookmarks() {
-    api.getBookmarks((response) => {
-      // FIXME:
-      store.bookmarks = response;
+    api.getBookmarks((bookmarkResponse) => {
+      store.setBookmarks(bookmarkResponse);
       render();
     });
   }

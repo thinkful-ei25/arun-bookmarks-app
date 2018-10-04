@@ -7,11 +7,17 @@ const store = (function storeModule() {
     CREATE_BOOKMARK: Symbol('Mode: Create Bookmark'),
   };
 
+  function setBookmarks(bookmarks) {
+    this.bookmarks = bookmarks;
+  }
+
   return {
     MODES,
 
     bookmarks: [],
     mode: MODES.DISPLAY,
     filter: { minRating: null },
+
+    setBookmarks,
   };
 })();
