@@ -20,6 +20,15 @@ const bookmarks = (function bookmarksModule() {
     return stars.join('');
   }
 
+  function renderExpandedBookmark(bookmark) {
+    const description = bookmark.description ? `<p>${bookmark.description}</p>` : '';
+    return `
+      ${description}
+      <a href="${bookmark.url}"><button type="button">Visit Site</button></a>
+      <button type="button"><i class="far fa-trash-alt"></i></button>
+    `;
+  }
+
   function renderBookmark(bookmark) {
     return `
       <li>
@@ -30,6 +39,7 @@ const bookmarks = (function bookmarksModule() {
               ${generateRatingStars(bookmark.rating)}
             </section>
           </header>
+          ${bookmark.isExpanded ? renderExpandedBookmark(bookmark) : ''}
         </article>
       </li>
     `;
