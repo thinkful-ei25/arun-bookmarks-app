@@ -18,7 +18,7 @@
   </header>
   <main role="main">
     <section class="controls">
-      <button>Add Bookmark</button>
+      <button type="button">Add Bookmark</button>
       <select>
         <option value="">Filter by rating</option>
         <option value="1">&gt;1</option>
@@ -27,43 +27,52 @@
         <option value="4">&gt;4</option>
       </select>
     </section>
-    <section class="bookmark display">
+    <section class="bookmarks">
       <ul>
         <li>
-          <header>
-            <h2>Item 1</h2>
-          </header>
-          <section class="rating">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="far fa-star"></i>
-            <i class="far fa-star"></i>
-          </section>
+          <article>
+            <header>
+              <h2>Item 1</h2>
+              <section class="rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+              </section>
+            </header>
+            <main>
+              <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. In fugiat vero ipsa,
+                minus laboriosam architecto dicta officiis? Maxime, itaque eligendi officia
+                reiciendis qui quisquam, deleniti, unde quam ea temporibus error?</p>
+              <a href="#"><button type="button">Visit Site</button></a>
+              <button type="button"><i class="far fa-trash-alt"></i></button>
+            </main>
+          </article>
         </li>
         <li>
           <header>
             <h2>Item 2</h2>
+            <section class="rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="far fa-star"></i>
+            </section>
           </header>
-          <section class="rating">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="far fa-star"></i>
-          </section>
         </li>
         <li>
           <header>
             <h2>Item 3</h2>
+            <section class="rating">
+              <i class="fas fa-star"></i>
+              <i class="far fa-star"></i>
+              <i class="far fa-star"></i>
+              <i class="far fa-star"></i>
+              <i class="far fa-star"></i>
+            </section>
           </header>
-          <section class="rating">
-            <i class="fas fa-star"></i>
-            <i class="far fa-star"></i>
-            <i class="far fa-star"></i>
-            <i class="far fa-star"></i>
-            <i class="far fa-star"></i>
-          </section>
         </li>
       </ul>
     </section>
