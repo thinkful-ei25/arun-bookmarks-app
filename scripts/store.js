@@ -20,14 +20,19 @@ const store = (function storeModule() {
     bookmark.isExpanded = !bookmark.isExpanded;
   }
 
+  function setMinRating(rating) {
+    this.filters.minRating = rating || null;
+  }
+
   return {
     MODES,
 
     bookmarks: [],
     mode: MODES.DISPLAY,
-    filter: { minRating: null },
+    filters: { minRating: null },
 
     setBookmarks,
     toggleExpandedForID,
+    setMinRating,
   };
 })();

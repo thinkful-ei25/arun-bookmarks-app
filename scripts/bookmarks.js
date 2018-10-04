@@ -121,8 +121,16 @@ const bookmarks = (function bookmarksModule() {
     });
   }
 
+  function bindFilterController() {
+    $('.js-app').on('change', '.js-ratings-filter', (event) => {
+      const value = $(event.currentTarget).val();
+      store.setMinRating(parseInt(value, 10));
+    });
+  }
+
   function bindControllers() {
     bindDetailedViewController();
+    bindFilterController();
   }
 
   return {
