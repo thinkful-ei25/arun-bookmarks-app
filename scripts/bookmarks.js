@@ -50,7 +50,7 @@ const bookmarks = (function bookmarksModule() {
       <section class="display-controls">
         <button class="js-add-bookmark" type="button">Add Bookmark</button>
         <select class="js-ratings-filter">
-          <option value="">Filter by rating</option>
+          <option value="0">Filter by rating</option>
           <option value="1">&gt; 1</option>
           <option value="2">&gt; 2</option>
           <option value="3">&gt; 3</option>

@@ -21,7 +21,7 @@ const store = (function storeModule() {
   }
 
   function setMinRating(rating) {
-    this.filters.minRating = rating || null;
+    this.filters.minRating = rating || 0;
   }
 
   return {
@@ -29,7 +29,7 @@ const store = (function storeModule() {
 
     bookmarks: [],
     mode: MODES.DISPLAY,
-    filters: { minRating: null },
+    filters: { minRating: 0 },
 
     setBookmarks,
     toggleExpandedForID,
