@@ -84,7 +84,19 @@ const bookmarks = (function bookmarksModule() {
     `;
   }
 
+  function renderErrorSection() {
+    return `
+      <section class="error-flash">
+        <p>${store.errorMessage}</p>
+      </section>
+    `;
+  }
+
   function renderBookmarkView() {
+    if (store.errorMessage) {
+      return renderErrorSection();
+    }
+
     return `
       ${renderDisplayControls()}
       ${renderBookmarksList()}
@@ -96,6 +108,7 @@ const bookmarks = (function bookmarksModule() {
       <header>
         <h2>Add Bookmark</h2>
       </header>
+      ${store.errorMessage ? renderErrorSection() : ''}
       <form class="add-bookmark-form js-add-bookmark-form">
         <fieldset>
           <div class="add-bookmark-form__row">
