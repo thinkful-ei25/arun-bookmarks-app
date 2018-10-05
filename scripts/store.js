@@ -19,6 +19,10 @@ const store = (function storeModule() {
     this.bookmarks.push(bookmark);
   }
 
+  function removeBookmarkWithID(id) {
+    this.bookmarks = this.bookmarks.filter(bookmark => bookmark.id !== id);
+  }
+
   function toggleExpandedForID(id) {
     const bookmark = findBookmarkWithIDFromBookmarks(id, this.bookmarks);
     bookmark.isExpanded = !bookmark.isExpanded;
@@ -32,8 +36,8 @@ const store = (function storeModule() {
     this.mode = mode;
   }
 
-  function removeBookmarkWithID(id) {
-    this.bookmarks = this.bookmarks.filter(bookmark => bookmark.id !== id);
+  function setErrorMessage(message) {
+    this.errorMessage = message;
   }
 
   return {
@@ -43,6 +47,7 @@ const store = (function storeModule() {
     bookmarks: [],
     mode: MODES.DISPLAY,
     filters: { minRating: 0 },
+    errorMessage: null,
 
     setBookmarks,
     addBookmark,
@@ -50,5 +55,6 @@ const store = (function storeModule() {
     removeBookmarkWithID,
     setMinRating,
     setMode,
+    setErrorMessage,
   };
 }());

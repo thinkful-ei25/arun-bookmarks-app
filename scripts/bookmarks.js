@@ -154,12 +154,16 @@ const bookmarks = (function bookmarksModule() {
   }
 
   function fetchBookmarks() {
+    store.setErrorMessage(null);
     api.getBookmarks((error, bookmarkResponse) => {
       if (error) {
-        console.error(error.message);
-        return;
+        store.setErrorMessage(error.message);
       }
-      store.setBookmarks(bookmarkResponse);
+
+      if (bookmarkResponse) {
+        store.setBookmarks(bookmarkResponse);
+      }
+
       render();
     });
   }
@@ -183,14 +187,18 @@ const bookmarks = (function bookmarksModule() {
   function onSubmitAddbookmarkForm(event) {
     event.preventDefault();
     const data = extractFormDataFromElement(event.currentTarget);
+
+    store.setErrorMessage(null);
     api.createBookmark(data, (error, bookmark) => {
       if (error) {
-        console.error(error.message);
-        return;
+        store.setErrorMessage(error.message);
       }
 
-      store.addBookmark(bookmark);
-      store.setMode(store.MODES.DISPLAY);
+      if (bookmark) {
+        store.addBookmark(bookmark);
+        store.setMode(store.MODES.DISPLAY);
+      }
+
       render();
     });
   }
@@ -219,12 +227,14 @@ const bookmarks = (function bookmarksModule() {
   function bindRemoveBookmarkController() {
     $('.js-app').on('click', '.js-delete-bookmark', (event) => {
       const id = getIDFromElement(event.currentTarget);
+      store.setErrorMessage(null);
       api.deleteBookmark(id, (error) => {
         if (error) {
-          console.error(error.message);
-          return;
+          store.setErrorMessage(error.message);
+        } else {
+          store.removeBookmarkWithID(id);
         }
-        store.removeBookmarkWithID(id);
+
         render();
       });
     });
