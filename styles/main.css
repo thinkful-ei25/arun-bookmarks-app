@@ -15,15 +15,17 @@ html * {
 body { 
   font-size: 16px;
   width: 100%;
+  font-family: 'Lato', sans-serif;
 }
 
 .root-container {
-  margin: 0 1em;
+  width: 90%;
+  margin: 0 auto;
 }
 
 .banner {
   margin: 0 auto;
-  padding: var(--mod-5) 0;
+  padding: var(--mod-4) 0;
 }
 
 .banner__h1 {
@@ -35,11 +37,18 @@ body {
   flex-direction: row no-wrap;
   align-items: center;
   width: 100%;
-  padding: 0.5em 0;
+  padding: var(--mod-4);
+  margin: 0.5em 0;
+  margin-bottom: 0;
 }
 
 .bookmark__h2 {
   font-size: var(--mod-3);
+}
+
+.bookmark p,
+.bookmark-controls{
+  padding: var(--mod-4);
 }
 
 .bookmark__rating {
@@ -97,12 +106,7 @@ body {
 }
 
 @media screen and (min-width: 768px) {
-  body {
-    max-width: 1000px;
-  }
-
   .root-container {
-    width: 60%;
-    margin: 0 auto;
+    max-width: 768px;
   }
 }
