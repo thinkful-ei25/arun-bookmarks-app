@@ -33,8 +33,17 @@ const api = (function apiModule() {
     });
   }
 
+  function deleteBookmark(id, callback) {
+    $.ajax({
+      url: `${BASE_URL}/${id}`,
+      method: 'DELETE',
+      success: callback,
+    });
+  }
+
   return {
     getBookmarks,
     createBookmark,
+    deleteBookmark,
   };
 }());

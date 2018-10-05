@@ -23,7 +23,7 @@ const bookmarks = (function bookmarksModule() {
     return `
       ${description}
       <a href="${bookmark.url}"><button type="button">Visit Site</button></a>
-      <button type="button"><i class="far fa-trash-alt"></i></button>
+      <button class="js-delete-bookmark" type="button"><i class="far fa-trash-alt"></i></button>
     `;
   }
 
@@ -207,10 +207,21 @@ const bookmarks = (function bookmarksModule() {
     $('.js-app').on('submit', '.js-add-bookmark-form', onSubmitAddbookmarkForm);
   }
 
+  function bindRemoveBookmarkController() {
+    $('.js-app').on('click', '.js-delete-bookmark', (event) => {
+      const id = getIDFromElement(event.currentTarget);
+      api.deleteBookmark(id, () => {
+        store.removeBookmarkWithID(id);
+        render();
+      });
+    });
+  }
+
   function bindControllers() {
     bindDetailedViewController();
     bindFilterController();
     bindAddBookmarkController();
+    bindRemoveBookmarkController();
   }
 
   return {
