@@ -18,8 +18,10 @@ const bookmarks = (function bookmarksModule() {
     const description = bookmark.description ? `<p>${bookmark.description}</p>` : '';
     return `
       ${description}
-      <a href="${bookmark.url}"><button type="button">Visit Site</button></a>
-      <button class="js-delete-bookmark" type="button"><i class="far fa-trash-alt"></i></button>
+      <div class="bookmark-controls">
+        <a href="${bookmark.url}"><button class="bookmark-controls__button" type="button">Visit Site</button></a>
+        <button class="bookmark-controls__button bookmark-controls__delete_button js-delete-bookmark" type="button"><i class="far fa-trash-alt"></i></button>
+      </div>
     `;
   }
 
@@ -27,9 +29,9 @@ const bookmarks = (function bookmarksModule() {
     return `
       <li>
         <article class="bookmark js-bookmark" data-bookmark-id="${bookmark.id}">
-          <header class="js-bookmark__header">
-            <h2>${bookmark.title}</h2>
-            <section class="bookmark-rating">
+          <header class="bookmark__header js-bookmark__header">
+            <h2 class="bookmark__h2">${bookmark.title}</h2>
+            <section class="bookmark__rating">
               ${generateRatingStars(bookmark.rating)}
             </section>
           </header>
@@ -58,7 +60,7 @@ const bookmarks = (function bookmarksModule() {
     return `
       <section class="display-controls">
         <button class="js-add-bookmark" type="button">Add Bookmark</button>
-        <select class="js-ratings-filter">
+        <select class="display-controls--right js-ratings-filter">
           ${renderDropdownOptions()}
         </select>
       </section>
@@ -82,7 +84,7 @@ const bookmarks = (function bookmarksModule() {
 
   function renderErrorSection() {
     return `
-      <section class="error-flash">
+      <section class="flash--error">
         <p>${store.errorMessage}</p>
       </section>
     `;
@@ -116,14 +118,14 @@ const bookmarks = (function bookmarksModule() {
             <input type="url" name="url" id="url" class="add-bookmark-form__input">
           </div>
           <div class="add-bookmark-form__row">
-            <label for="description" class="add-bookmark-form__label">Description <span class="add-bookmark-form__optional-label">Optional</span></label>
+            <label for="description" class="add-bookmark-form__label">Description <span class="add-bookmark-form__optional_label">Optional</span></label>
             <textarea
                 name="desc"
                 id="description"
                 class="add-bookmark-form__input add-bookmark-form__textarea"></textarea>
           </div>
           <div class="add-bookmark-form__row">
-            <label for="rating" class="add-bookmark-form__label">Rating <span class="add-bookmark-form__optional-label">Optional</span></label>
+            <label for="rating" class="add-bookmark-form__label">Rating <span class="add-bookmark-form__optional_label">Optional</span></label>
             <input
                 type="number"
                 name="rating"
@@ -131,7 +133,7 @@ const bookmarks = (function bookmarksModule() {
                 min="1"
                 max="${store.MAX_RATING}"
                 step="1"
-                class="add-bookmark-form__input">
+                class="add-bookmark-form__rating_input">
           </div>
 
           <button type="submit">Submit</button>
