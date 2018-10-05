@@ -8,7 +8,7 @@ const bookmarks = (function bookmarksModule() {
     const stars = [];
 
     for (let i = 0; i < store.MAX_RATING; i += 1) {
-      stars.push(`<i class="fa${i < numStars ? 's' : 'r'} fa-star"></i>`);
+      stars.push(`<i class="fa${i < numStars ? 's' : 'r'} fa-star" aria-hidden="true"></i>`);
     }
 
     return stars.join('');
@@ -18,20 +18,25 @@ const bookmarks = (function bookmarksModule() {
     const description = bookmark.description ? `<p>${bookmark.description}</p>` : '';
     return `
       ${description}
-      <a href="${bookmark.url}"><button type="button">Visit Site</button></a>
-      <button class="js-delete-bookmark" type="button"><i class="far fa-trash-alt"></i></button>
+      <div class="bookmark-controls">
+        <a href="${bookmark.url}"><button class="bookmark-controls__button" type="button">Visit Site</button></a>
+        <button class="bookmark-controls__button bookmark-controls__delete_button js-delete-bookmark" type="button" title="Delete bookmark" aria-label="Delete bookmark"><i class="far fa-trash-alt" aria-hidden="true"></i></button>
+      </div>
     `;
   }
 
   function renderBookmark(bookmark) {
+    const accessibleRating = bookmark.rating
+      ? `${bookmark.rating} out of 5 stars`
+      : 'Bookmark is unrated';
     return `
       <li>
         <article class="bookmark js-bookmark" data-bookmark-id="${bookmark.id}">
-          <header class="js-bookmark__header">
-            <h2>${bookmark.title}</h2>
-            <section class="bookmark-rating">
+          <header class="bookmark__header js-bookmark__header">
+            <h2 class="bookmark__h2">${bookmark.title}</h2>
+            <span title="${accessibleRating}" aria-label="${accessibleRating}" class="bookmark__rating">
               ${generateRatingStars(bookmark.rating)}
-            </section>
+            </span>
           </header>
           ${bookmark.isExpanded ? renderExpandedBookmark(bookmark) : ''}
         </article>
@@ -56,9 +61,9 @@ const bookmarks = (function bookmarksModule() {
 
   function renderDisplayControls() {
     return `
-      <section class="display-controls">
+      <section class="display-controls" aria-label="Application controls">
         <button class="js-add-bookmark" type="button">Add Bookmark</button>
-        <select class="js-ratings-filter">
+        <select class="display-controls--right js-ratings-filter" aria-label="Filter by Rating" title="Filter bookmarks by rating">
           ${renderDropdownOptions()}
         </select>
       </section>
@@ -72,7 +77,7 @@ const bookmarks = (function bookmarksModule() {
       .join('');
 
     return `
-      <section class="bookmark-list">
+      <section class="bookmark-list" aria-label="List of bookmarks">
         <ul>
           ${bookmarkElements}
         </ul>
@@ -82,7 +87,7 @@ const bookmarks = (function bookmarksModule() {
 
   function renderErrorSection() {
     return `
-      <section class="error-flash">
+      <section class="flash--error">
         <p>${store.errorMessage}</p>
       </section>
     `;
@@ -106,36 +111,34 @@ const bookmarks = (function bookmarksModule() {
       </header>
       ${store.errorMessage ? renderErrorSection() : ''}
       <form class="add-bookmark-form js-add-bookmark-form">
-        <fieldset>
-          <div class="add-bookmark-form__row">
-            <label for="title" class="add-bookmark-form__label">Title</label>
-            <input type="text" name="title" id="title" class="add-bookmark-form__input">
-          </div>
-          <div class="add-bookmark-form__row">
-            <label for="url" class="add-bookmark-form__label">URL</label>
-            <input type="url" name="url" id="url" class="add-bookmark-form__input">
-          </div>
-          <div class="add-bookmark-form__row">
-            <label for="description" class="add-bookmark-form__label">Description <span class="add-bookmark-form__optional-label">Optional</span></label>
-            <textarea
-                name="desc"
-                id="description"
-                class="add-bookmark-form__input add-bookmark-form__textarea"></textarea>
-          </div>
-          <div class="add-bookmark-form__row">
-            <label for="rating" class="add-bookmark-form__label">Rating <span class="add-bookmark-form__optional-label">Optional</span></label>
-            <input
-                type="number"
-                name="rating"
-                id="rating"
-                min="1"
-                max="${store.MAX_RATING}"
-                step="1"
-                class="add-bookmark-form__input">
-          </div>
+        <div class="add-bookmark-form__row">
+          <label for="title" class="add-bookmark-form__label">Title</label>
+          <input type="text" name="title" id="title" class="add-bookmark-form__input">
+        </div>
+        <div class="add-bookmark-form__row">
+          <label for="url" class="add-bookmark-form__label">URL</label>
+          <input type="url" name="url" id="url" class="add-bookmark-form__input">
+        </div>
+        <div class="add-bookmark-form__row">
+          <label for="description" class="add-bookmark-form__label">Description <span class="add-bookmark-form__optional_label">Optional</span></label>
+          <textarea
+              name="desc"
+              id="description"
+              class="add-bookmark-form__input add-bookmark-form__textarea"></textarea>
+        </div>
+        <div class="add-bookmark-form__row">
+          <label for="rating" class="add-bookmark-form__label">Rating <span class="add-bookmark-form__optional_label">Optional</span></label>
+          <input
+              type="number"
+              name="rating"
+              id="rating"
+              min="1"
+              max="${store.MAX_RATING}"
+              step="1"
+              class="add-bookmark-form__rating_input">
+        </div>
 
           <button type="submit">Submit</button>
-        </fieldset>
       </form>
     `;
   }

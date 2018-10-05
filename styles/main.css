@@ -1,0 +1,106 @@
+:root {
+  /* Major-third modular scale */
+  --mod-1: 2.441em;
+  --mod-2: 1.953em;
+  --mod-3: 1.563em;
+  --mod-4: 1.25em;
+  --mod-5: 0.8em;
+  --mod-6: 0.64em;
+}
+
+html * {
+  box-sizing: border-box;
+}
+
+body { 
+  font-size: 16px;
+  width: 100%;
+  font-family: 'Lato', sans-serif;
+}
+
+.root-container {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.banner {
+  margin: 0 auto;
+  padding: var(--mod-4) 0;
+}
+
+.banner__h1 {
+  font-size: var(--mod-1);
+}
+
+.bookmark__header {
+  display: flex;
+  flex-direction: row no-wrap;
+  align-items: center;
+  width: 100%;
+  padding: var(--mod-4) 0;
+  margin-bottom: 0;
+}
+
+.bookmark__h2 {
+  font-size: var(--mod-3);
+}
+
+.bookmark__rating {
+  margin-left: auto;
+}
+
+.bookmark-controls {
+  display: flex;
+  padding-top: 0.5em;
+  align-items: center;
+}
+
+.bookmark-controls__delete_button {
+  margin-left: auto;
+  border: none;
+  font-size: var(--mod-4);
+}
+
+.add-bookmark-form__row {
+  display: flex;
+  flex-flow: row no-wrap;
+  align-content: center;
+  align-items: flex-start;
+  padding: 0.5em 0;
+}
+
+.add-bookmark-form__label {
+  flex: 1 0 auto;
+  max-width: 10em;
+  padding-right: 0.5em;
+}
+
+.add-bookmark-form__input {
+  flex: 1 0 auto;
+}
+
+.add-bookmark-form__rating_input {
+  flex: 0 0 4em;
+}
+
+.add-bookmark-form__optional_label {
+  font-style: italic;
+  font-size: var(--mod-5)
+}
+
+.add-bookmark-form__textarea {
+  height: 8em;
+}
+
+.flash--error {
+  color: white;
+  padding: 1em 0;
+  background-color: red;
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+  .root-container {
+    max-width: 768px;
+  }
+}
