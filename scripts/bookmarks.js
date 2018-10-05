@@ -67,7 +67,7 @@ const bookmarks = (function bookmarksModule() {
 
   function renderBookmarksList() {
     const bookmarkElements = store.bookmarks
-      .filter(bookmark => bookmark.rating > store.filters.minRating)
+      .filter(bookmark => !store.filters.minRating || bookmark.rating > store.filters.minRating)
       .map(renderBookmark)
       .join('');
 
