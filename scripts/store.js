@@ -15,6 +15,10 @@ const store = (function storeModule() {
     this.bookmarks = bookmarks;
   }
 
+  function addBookmark(bookmark) {
+    this.bookmarks.push(bookmark);
+  }
+
   function toggleExpandedForID(id) {
     const bookmark = findBookmarkWithIDFromBookmarks(id, this.bookmarks);
     bookmark.isExpanded = !bookmark.isExpanded;
@@ -22,6 +26,10 @@ const store = (function storeModule() {
 
   function setMinRating(rating) {
     this.filters.minRating = rating || 0;
+  }
+
+  function setMode(mode) {
+    this.mode = mode;
   }
 
   return {
@@ -33,7 +41,9 @@ const store = (function storeModule() {
     filters: { minRating: 0 },
 
     setBookmarks,
+    addBookmark,
     toggleExpandedForID,
     setMinRating,
+    setMode,
   };
 }());
