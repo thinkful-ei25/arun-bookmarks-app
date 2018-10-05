@@ -92,7 +92,44 @@ const bookmarks = (function bookmarksModule() {
   }
 
   function renderCreateBookmarkView() {
-    return null;
+    return `
+      <header>
+        <h2>Add Bookmark</h2>
+      </header>
+      <form class="add-bookmark-form">
+        <fieldset>
+          <div class="add-bookmark-form__row">
+            <label for="title" class="add-bookmark-form__label">Title</label>
+            <input type="text" name="title" id="title" class="add-bookmark-form__input">
+          </div>
+          <div class="add-bookmark-form__row">
+            <label for="url" class="add-bookmark-form__label">URL</label>
+            <input type="url" name="url" id="url" class="add-bookmark-form__input">
+          </div>
+          <div class="add-bookmark-form__row">
+            <label for="description" class="add-bookmark-form__label">Description</label>
+            <textarea
+                name="desc"
+                id="description"
+                class="add-bookmark-form__input add-bookmark-form__textarea">
+            </textarea>
+          </div>
+          <div class="add-bookmark-form__row">
+            <label for="rating" class="add-bookmark-form__label">Rating</label>
+            <input
+                type="number"
+                name="rating"
+                id="rating"
+                min="1"
+                max="${store.MAX_RATING}"
+                step="1"
+                class="add-bookmark-form__input">
+          </div>
+
+          <button type="submit">Submit</button>
+        </fieldset>
+      </form>
+    `;
   }
 
   function render() {
