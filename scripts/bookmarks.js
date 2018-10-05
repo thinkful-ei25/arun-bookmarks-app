@@ -8,7 +8,7 @@ const bookmarks = (function bookmarksModule() {
     const stars = [];
 
     for (let i = 0; i < store.MAX_RATING; i += 1) {
-      stars.push(`<i class="fa${i < numStars ? 's' : 'r'} fa-star"></i>`);
+      stars.push(`<i class="fa${i < numStars ? 's' : 'r'} fa-star" aria-hidden="true"></i>`);
     }
 
     return stars.join('');
@@ -20,20 +20,23 @@ const bookmarks = (function bookmarksModule() {
       ${description}
       <div class="bookmark-controls">
         <a href="${bookmark.url}"><button class="bookmark-controls__button" type="button">Visit Site</button></a>
-        <button class="bookmark-controls__button bookmark-controls__delete_button js-delete-bookmark" type="button"><i class="far fa-trash-alt"></i></button>
+        <button class="bookmark-controls__button bookmark-controls__delete_button js-delete-bookmark" type="button" title="Delete bookmark" aria-label="Delete bookmark"><i class="far fa-trash-alt" aria-hidden="true"></i></button>
       </div>
     `;
   }
 
   function renderBookmark(bookmark) {
+    const accessibleRating = bookmark.rating
+      ? `${bookmark.rating} out of 5 stars`
+      : 'Bookmark is unrated';
     return `
       <li>
         <article class="bookmark js-bookmark" data-bookmark-id="${bookmark.id}">
           <header class="bookmark__header js-bookmark__header">
             <h2 class="bookmark__h2">${bookmark.title}</h2>
-            <section class="bookmark__rating">
+            <span title="${accessibleRating}" aria-label="${accessibleRating}" class="bookmark__rating">
               ${generateRatingStars(bookmark.rating)}
-            </section>
+            </span>
           </header>
           ${bookmark.isExpanded ? renderExpandedBookmark(bookmark) : ''}
         </article>
@@ -60,7 +63,7 @@ const bookmarks = (function bookmarksModule() {
     return `
       <section class="display-controls">
         <button class="js-add-bookmark" type="button">Add Bookmark</button>
-        <select class="display-controls--right js-ratings-filter">
+        <select class="display-controls--right js-ratings-filter" aria-label="Filter by Rating" title="Filter bookmarks by rating">
           ${renderDropdownOptions()}
         </select>
       </section>
@@ -108,36 +111,34 @@ const bookmarks = (function bookmarksModule() {
       </header>
       ${store.errorMessage ? renderErrorSection() : ''}
       <form class="add-bookmark-form js-add-bookmark-form">
-        <fieldset>
-          <div class="add-bookmark-form__row">
-            <label for="title" class="add-bookmark-form__label">Title</label>
-            <input type="text" name="title" id="title" class="add-bookmark-form__input">
-          </div>
-          <div class="add-bookmark-form__row">
-            <label for="url" class="add-bookmark-form__label">URL</label>
-            <input type="url" name="url" id="url" class="add-bookmark-form__input">
-          </div>
-          <div class="add-bookmark-form__row">
-            <label for="description" class="add-bookmark-form__label">Description <span class="add-bookmark-form__optional_label">Optional</span></label>
-            <textarea
-                name="desc"
-                id="description"
-                class="add-bookmark-form__input add-bookmark-form__textarea"></textarea>
-          </div>
-          <div class="add-bookmark-form__row">
-            <label for="rating" class="add-bookmark-form__label">Rating <span class="add-bookmark-form__optional_label">Optional</span></label>
-            <input
-                type="number"
-                name="rating"
-                id="rating"
-                min="1"
-                max="${store.MAX_RATING}"
-                step="1"
-                class="add-bookmark-form__rating_input">
-          </div>
+        <div class="add-bookmark-form__row">
+          <label for="title" class="add-bookmark-form__label">Title</label>
+          <input type="text" name="title" id="title" class="add-bookmark-form__input">
+        </div>
+        <div class="add-bookmark-form__row">
+          <label for="url" class="add-bookmark-form__label">URL</label>
+          <input type="url" name="url" id="url" class="add-bookmark-form__input">
+        </div>
+        <div class="add-bookmark-form__row">
+          <label for="description" class="add-bookmark-form__label">Description <span class="add-bookmark-form__optional_label">Optional</span></label>
+          <textarea
+              name="desc"
+              id="description"
+              class="add-bookmark-form__input add-bookmark-form__textarea"></textarea>
+        </div>
+        <div class="add-bookmark-form__row">
+          <label for="rating" class="add-bookmark-form__label">Rating <span class="add-bookmark-form__optional_label">Optional</span></label>
+          <input
+              type="number"
+              name="rating"
+              id="rating"
+              min="1"
+              max="${store.MAX_RATING}"
+              step="1"
+              class="add-bookmark-form__rating_input">
+        </div>
 
           <button type="submit">Submit</button>
-        </fieldset>
       </form>
     `;
   }
