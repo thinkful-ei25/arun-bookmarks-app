@@ -14,6 +14,16 @@ const api = (function apiModule() {
     return response.map(decorateBookmark);
   }
 
+  function parseError(error) {
+    if (error.status === 400) {
+      return new Error(error.responseJSON.message);
+    }
+
+    return new Error(
+      'An error coccured while communicating with our servers. Please try again later.',
+    );
+  }
+
   function getBookmarks(callback) {
     $.ajax({
       url: BASE_URL,
