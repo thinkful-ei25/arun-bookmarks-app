@@ -34,7 +34,11 @@ const api = (function apiModule() {
   }
 
   function deleteBookmark(id, callback) {
-    callback();
+    $.ajax({
+      url: `${BASE_URL}/${id}`,
+      method: 'DELETE',
+      success: callback,
+    });
   }
 
   return {
