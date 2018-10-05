@@ -154,7 +154,11 @@ const bookmarks = (function bookmarksModule() {
   }
 
   function fetchBookmarks() {
-    api.getBookmarks((bookmarkResponse) => {
+    api.getBookmarks((error, bookmarkResponse) => {
+      if (error) {
+        console.error(error.message);
+        return;
+      }
       store.setBookmarks(bookmarkResponse);
       render();
     });
@@ -179,7 +183,12 @@ const bookmarks = (function bookmarksModule() {
   function onSubmitAddbookmarkForm(event) {
     event.preventDefault();
     const data = extractFormDataFromElement(event.currentTarget);
-    api.createBookmark(data, (bookmark) => {
+    api.createBookmark(data, (error, bookmark) => {
+      if (error) {
+        console.error(error.message);
+        return;
+      }
+
       store.addBookmark(bookmark);
       store.setMode(store.MODES.DISPLAY);
       render();
@@ -210,7 +219,11 @@ const bookmarks = (function bookmarksModule() {
   function bindRemoveBookmarkController() {
     $('.js-app').on('click', '.js-delete-bookmark', (event) => {
       const id = getIDFromElement(event.currentTarget);
-      api.deleteBookmark(id, () => {
+      api.deleteBookmark(id, (error) => {
+        if (error) {
+          console.error(error.message);
+          return;
+        }
         store.removeBookmarkWithID(id);
         render();
       });

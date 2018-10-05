@@ -20,7 +20,7 @@ const api = (function apiModule() {
     }
 
     return new Error(
-      'An error coccured while communicating with our servers. Please try again later.',
+      'An error coccured while communicating with our servers. Please contact an administrator for assistance.',
     );
   }
 
@@ -29,7 +29,8 @@ const api = (function apiModule() {
       url: BASE_URL,
       method: 'GET',
       dataType: 'json',
-      success: response => callback(decorateBookmarkArray(response)),
+      success: response => callback(null, decorateBookmarkArray(response)),
+      error: error => callback(parseError(error), null),
     });
   }
 
@@ -39,7 +40,8 @@ const api = (function apiModule() {
       method: 'POST',
       contentType: 'application/json',
       data: JSON.stringify(bookmark),
-      success: response => callback(decorateBookmark(response)),
+      success: response => callback(null, decorateBookmark(response)),
+      error: error => callback(parseError(error), null),
     });
   }
 
@@ -47,7 +49,8 @@ const api = (function apiModule() {
     $.ajax({
       url: `${BASE_URL}/${id}`,
       method: 'DELETE',
-      success: callback,
+      success: () => callback(null, callback),
+      error: error => callback(parseError(error), null),
     });
   }
 
