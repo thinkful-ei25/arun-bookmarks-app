@@ -152,4 +152,4 @@ const bookmarks = (function bookmarksModule() {
     fetchBookmarks,
     bindControllers,
   };
-})();
+}());

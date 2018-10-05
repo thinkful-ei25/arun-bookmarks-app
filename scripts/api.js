@@ -26,4 +26,4 @@ const api = (function apiModule() {
   return {
     getBookmarks,
   };
-})();
+}());

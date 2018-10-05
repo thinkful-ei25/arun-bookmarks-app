@@ -36,4 +36,4 @@ const store = (function storeModule() {
     toggleExpandedForID,
     setMinRating,
   };
-})();
+}());

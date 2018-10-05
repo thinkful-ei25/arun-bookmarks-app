@@ -11,6 +11,3 @@ rules:
   strict:
     - error
     - safe
-  wrap-iife:
-    - error
-    - any
