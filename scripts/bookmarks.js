@@ -84,7 +84,19 @@ const bookmarks = (function bookmarksModule() {
     `;
   }
 
+  function renderErrorSection() {
+    return `
+      <section class="error-flash">
+        <p>${store.errorMessage}</p>
+      </section>
+    `;
+  }
+
   function renderBookmarkView() {
+    if (store.errorMessage) {
+      return renderErrorSection();
+    }
+
     return `
       ${renderDisplayControls()}
       ${renderBookmarksList()}
@@ -96,6 +108,7 @@ const bookmarks = (function bookmarksModule() {
       <header>
         <h2>Add Bookmark</h2>
       </header>
+      ${store.errorMessage ? renderErrorSection() : ''}
       <form class="add-bookmark-form js-add-bookmark-form">
         <fieldset>
           <div class="add-bookmark-form__row">
@@ -154,8 +167,16 @@ const bookmarks = (function bookmarksModule() {
   }
 
   function fetchBookmarks() {
-    api.getBookmarks((bookmarkResponse) => {
-      store.setBookmarks(bookmarkResponse);
+    store.setErrorMessage(null);
+    api.getBookmarks((error, bookmarkResponse) => {
+      if (error) {
+        store.setErrorMessage(error.message);
+      }
+
+      if (bookmarkResponse) {
+        store.setBookmarks(bookmarkResponse);
+      }
+
       render();
     });
   }
@@ -179,9 +200,18 @@ const bookmarks = (function bookmarksModule() {
   function onSubmitAddbookmarkForm(event) {
     event.preventDefault();
     const data = extractFormDataFromElement(event.currentTarget);
-    api.createBookmark(data, (bookmark) => {
-      store.addBookmark(bookmark);
-      store.setMode(store.MODES.DISPLAY);
+
+    store.setErrorMessage(null);
+    api.createBookmark(data, (error, bookmark) => {
+      if (error) {
+        store.setErrorMessage(error.message);
+      }
+
+      if (bookmark) {
+        store.addBookmark(bookmark);
+        store.setMode(store.MODES.DISPLAY);
+      }
+
       render();
     });
   }
@@ -210,8 +240,14 @@ const bookmarks = (function bookmarksModule() {
   function bindRemoveBookmarkController() {
     $('.js-app').on('click', '.js-delete-bookmark', (event) => {
       const id = getIDFromElement(event.currentTarget);
-      api.deleteBookmark(id, () => {
-        store.removeBookmarkWithID(id);
+      store.setErrorMessage(null);
+      api.deleteBookmark(id, (error) => {
+        if (error) {
+          store.setErrorMessage(error.message);
+        } else {
+          store.removeBookmarkWithID(id);
+        }
+
         render();
       });
     });
