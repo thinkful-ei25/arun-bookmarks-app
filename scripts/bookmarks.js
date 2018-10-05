@@ -189,7 +189,12 @@ const bookmarks = (function bookmarksModule() {
 
   function extractFormDataFromElement(element) {
     const formData = new FormData(element);
-    return Array.from(formData).reduce((acc, [key, val]) => Object.assign(acc, { [key]: val }), {});
+    return Array.from(formData).reduce((acc, [key, val]) => {
+      if (val) {
+        Object.assign(acc, { [key]: val });
+      }
+      return acc;
+    }, {});
   }
 
   function onSubmitAddbookmarkForm(event) {
