@@ -61,7 +61,7 @@ const bookmarks = (function bookmarksModule() {
 
   function renderDisplayControls() {
     return `
-      <section class="display-controls">
+      <section class="display-controls" aria-label="Application controls">
         <button class="js-add-bookmark" type="button">Add Bookmark</button>
         <select class="display-controls--right js-ratings-filter" aria-label="Filter by Rating" title="Filter bookmarks by rating">
           ${renderDropdownOptions()}
@@ -77,7 +77,7 @@ const bookmarks = (function bookmarksModule() {
       .join('');
 
     return `
-      <section class="bookmark-list">
+      <section class="bookmark-list" aria-label="List of bookmarks">
         <ul>
           ${bookmarkElements}
         </ul>
