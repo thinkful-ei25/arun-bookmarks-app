@@ -96,7 +96,7 @@ const bookmarks = (function bookmarksModule() {
       <header>
         <h2>Add Bookmark</h2>
       </header>
-      <form class="add-bookmark-form">
+      <form class="add-bookmark-form js-add-bookmark-form">
         <fieldset>
           <div class="add-bookmark-form__row">
             <label for="title" class="add-bookmark-form__label">Title</label>
@@ -166,6 +166,26 @@ const bookmarks = (function bookmarksModule() {
       .attr('data-bookmark-id');
   }
 
+  function onClickAddButton() {
+    store.setMode(store.MODES.CREATE_BOOKMARK);
+    render();
+  }
+
+  function extractFormDataFromElement(element) {
+    const formData = new FormData(element);
+    return Array.from(formData).reduce((acc, [key, val]) => Object.assign(acc, { [key]: val }), {});
+  }
+
+  function onSubmitAddbookmarkForm(event) {
+    event.preventDefault();
+    const data = extractFormDataFromElement(event.currentTarget);
+    api.createBookmark(data, (bookmark) => {
+      store.addBookmark(bookmark);
+      store.setMode(store.MODES.DISPLAY);
+      render();
+    });
+  }
+
   function bindDetailedViewController() {
     $('.js-app').on('click', '.js-bookmark__header', (event) => {
       const id = getIDFromElement(event.currentTarget);
@@ -182,13 +202,9 @@ const bookmarks = (function bookmarksModule() {
     });
   }
 
-  function onClickAddButton() {
-    store.setMode(store.MODES.CREATE_BOOKMARK);
-    render();
-  }
-
   function bindAddBookmarkController() {
     $('.js-app').on('click', '.js-add-bookmark', onClickAddButton);
+    $('.js-app').on('submit', '.js-add-bookmark-form', onSubmitAddbookmarkForm);
   }
 
   function bindControllers() {

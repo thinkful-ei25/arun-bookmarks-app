@@ -23,7 +23,18 @@ const api = (function apiModule() {
     });
   }
 
+  function createBookmark(bookmark, callback) {
+    $.ajax({
+      url: BASE_URL,
+      method: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify(bookmark),
+      success: response => callback(decorateBookmark(response)),
+    });
+  }
+
   return {
     getBookmarks,
+    createBookmark,
   };
 }());

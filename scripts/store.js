@@ -15,6 +15,10 @@ const store = (function storeModule() {
     this.bookmarks = bookmarks;
   }
 
+  function addBookmark(bookmark) {
+    this.bookmarks.push(bookmark);
+  }
+
   function toggleExpandedForID(id) {
     const bookmark = findBookmarkWithIDFromBookmarks(id, this.bookmarks);
     bookmark.isExpanded = !bookmark.isExpanded;
@@ -37,6 +41,7 @@ const store = (function storeModule() {
     filters: { minRating: 0 },
 
     setBookmarks,
+    addBookmark,
     toggleExpandedForID,
     setMinRating,
     setMode,
