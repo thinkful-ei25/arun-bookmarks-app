@@ -32,6 +32,10 @@ const store = (function storeModule() {
     this.mode = mode;
   }
 
+  function removeBookmarkWithID(id) {
+    this.bookmarks = this.bookmarks.filter(bookmark => bookmark.id !== id);
+  }
+
   return {
     MODES,
     MAX_RATING: 5,
@@ -43,6 +47,7 @@ const store = (function storeModule() {
     setBookmarks,
     addBookmark,
     toggleExpandedForID,
+    removeBookmarkWithID,
     setMinRating,
     setMode,
   };

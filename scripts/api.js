@@ -33,8 +33,13 @@ const api = (function apiModule() {
     });
   }
 
+  function deleteBookmark(id, callback) {
+    callback();
+  }
+
   return {
     getBookmarks,
     createBookmark,
+    deleteBookmark,
   };
 }());
