@@ -39,9 +39,16 @@ body {
   width: 100%;
   padding: var(--mod-4) 0;
   margin-bottom: 0;
+  cursor: pointer;
 }
 
-.bookmark__h2 {
+.bookmark {
+  border: 1px solid darkgray;
+  margin-bottom: 0.25em;
+  padding: 0.25em 0.5em;
+}
+
+h2 {
   font-size: var(--mod-3);
 }
 
@@ -59,6 +66,7 @@ body {
   margin-left: auto;
   border: none;
   font-size: var(--mod-4);
+  cursor: pointer;
 }
 
 .add-bookmark-form__row {
@@ -95,8 +103,14 @@ body {
 .flash--error {
   color: white;
   padding: 1em 0;
-  background-color: red;
+  background-color: darkred;
   text-align: center;
+  border-radius: 0.25em;
+  margin: 0.5em 0;
+}
+
+.display-controls {
+  padding: 0.5em 0;
 }
 
 @media screen and (min-width: 768px) {

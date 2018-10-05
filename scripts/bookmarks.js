@@ -107,7 +107,7 @@ const bookmarks = (function bookmarksModule() {
   function renderCreateBookmarkView() {
     return `
       <header>
-        <h2>Add Bookmark</h2>
+        <h2 class="add-bookmark__h2">Add Bookmark</h2>
       </header>
       ${store.errorMessage ? renderErrorSection() : ''}
       <form class="add-bookmark-form js-add-bookmark-form">
