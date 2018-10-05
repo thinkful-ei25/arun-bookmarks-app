@@ -124,8 +124,7 @@ const bookmarks = (function bookmarksModule() {
             <textarea
                 name="desc"
                 id="description"
-                class="add-bookmark-form__input add-bookmark-form__textarea">
-            </textarea>
+                class="add-bookmark-form__input add-bookmark-form__textarea"></textarea>
           </div>
           <div class="add-bookmark-form__row">
             <label for="rating" class="add-bookmark-form__label">Rating</label>
