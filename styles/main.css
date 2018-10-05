@@ -37,18 +37,12 @@ body {
   flex-direction: row no-wrap;
   align-items: center;
   width: 100%;
-  padding: var(--mod-4);
-  margin: 0.5em 0;
+  padding: var(--mod-4) 0;
   margin-bottom: 0;
 }
 
 .bookmark__h2 {
   font-size: var(--mod-3);
-}
-
-.bookmark p,
-.bookmark-controls{
-  padding: var(--mod-4);
 }
 
 .bookmark__rating {
