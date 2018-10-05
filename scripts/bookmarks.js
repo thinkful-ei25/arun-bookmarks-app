@@ -7,12 +7,8 @@ const bookmarks = (function bookmarksModule() {
   function generateRatingStars(numStars) {
     const stars = [];
 
-    for (let i = 0; i < numStars; i += 1) {
-      stars.push('<i class="fas fa-star"></i>');
-    }
-
-    for (let i = 0; i < store.MAX_RATING - numStars; i += 1) {
-      stars.push('<i class="far fa-star"></i>');
+    for (let i = 0; i < store.MAX_RATING; i += 1) {
+      stars.push(`<i class="fa${i < numStars ? 's' : 'r'} fa-star"></i>`);
     }
 
     return stars.join('');
@@ -71,7 +67,7 @@ const bookmarks = (function bookmarksModule() {
 
   function renderBookmarksList() {
     const bookmarkElements = store.bookmarks
-      .filter(bookmark => bookmark.rating > store.filters.minRating)
+      .filter(bookmark => !store.filters.minRating || bookmark.rating > store.filters.minRating)
       .map(renderBookmark)
       .join('');
 
@@ -120,14 +116,14 @@ const bookmarks = (function bookmarksModule() {
             <input type="url" name="url" id="url" class="add-bookmark-form__input">
           </div>
           <div class="add-bookmark-form__row">
-            <label for="description" class="add-bookmark-form__label">Description</label>
+            <label for="description" class="add-bookmark-form__label">Description <span class="add-bookmark-form__optional-label">Optional</span></label>
             <textarea
                 name="desc"
                 id="description"
                 class="add-bookmark-form__input add-bookmark-form__textarea"></textarea>
           </div>
           <div class="add-bookmark-form__row">
-            <label for="rating" class="add-bookmark-form__label">Rating</label>
+            <label for="rating" class="add-bookmark-form__label">Rating <span class="add-bookmark-form__optional-label">Optional</span></label>
             <input
                 type="number"
                 name="rating"
@@ -193,7 +189,12 @@ const bookmarks = (function bookmarksModule() {
 
   function extractFormDataFromElement(element) {
     const formData = new FormData(element);
-    return Array.from(formData).reduce((acc, [key, val]) => Object.assign(acc, { [key]: val }), {});
+    return Array.from(formData).reduce((acc, [key, val]) => {
+      if (val) {
+        Object.assign(acc, { [key]: val });
+      }
+      return acc;
+    }, {});
   }
 
   function onSubmitAddbookmarkForm(event) {
