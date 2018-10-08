@@ -108,40 +108,42 @@ const bookmarks = (function bookmarksModule() {
 
   function renderCreateBookmarkView() {
     return `
-      <header>
-        <h2>Add Bookmark</h2>
-      </header>
-      ${store.errorMessage ? renderErrorSection() : ''}
-      <form class="js-add-bookmark-form">
-        <div class="add-bookmark--row">
-          <label class="add-bookmark--label" for="title">Title</label>
-          <input type="text" class="add-bookmark--text-field" name="title" id="title">
-        </div>
-        <div class="add-bookmark--row">
-          <label class="add-bookmark--label" for="url">URL</label>
-          <input type="url" class="add-bookmark--text-field" name="url" id="url">
-        </div>
-        <div class="add-bookmark--row">
-          <label class="add-bookmark--label" for="description">Description <span class="add-bookmark--label__optional">Optional</span></label>
-          <textarea
-              name="desc"
-              id="description"
-              class="add-bookmark--text-box"></textarea>
-        </div>
-        <div class="add-bookmark--row">
-          <label class="add-bookmark--label" for="rating">Rating <span class="add-bookmark--label__optional">Optional</span></label>
-          <input
-              type="number"
-              name="rating"
-              id="rating"
-              min="1"
-              max="${store.MAX_RATING}"
-              step="1"
-              class="add-bookmark--rating-field">
-        </div>
+      <div class="add-bookmark">
+        <header class="add-bookmark--header">
+          <h2>Create a new bookmark</h2>
+        </header>
+        ${store.errorMessage ? renderErrorSection() : ''}
+        <form class="js-add-bookmark-form">
+          <div class="add-bookmark--row">
+            <label class="add-bookmark--label" for="title">Title</label>
+            <input type="text" class="add-bookmark--text-field" name="title" id="title">
+          </div>
+          <div class="add-bookmark--row">
+            <label class="add-bookmark--label" for="url">URL</label>
+            <input type="url" class="add-bookmark--text-field" name="url" id="url">
+          </div>
+          <div class="add-bookmark--row">
+            <label class="add-bookmark--label" for="description">Description <span class="add-bookmark--label__optional">Optional</span></label>
+            <textarea
+                name="desc"
+                id="description"
+                class="add-bookmark--text-box"></textarea>
+          </div>
+          <div class="add-bookmark--row">
+            <label class="add-bookmark--label" for="rating">Rating <span class="add-bookmark--label__optional">Optional</span></label>
+            <input
+                type="number"
+                name="rating"
+                id="rating"
+                min="1"
+                max="${store.MAX_RATING}"
+                step="1"
+                class="add-bookmark--rating-field">
+          </div>
 
-          <button type="submit" class="add-bookmark--submit-btn">Submit</button>
-      </form>
+            <button type="submit" class="add-bookmark--submit-btn">Submit</button>
+        </form>
+      </div>
     `;
   }
 

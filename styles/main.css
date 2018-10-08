@@ -102,6 +102,15 @@ h2 {
   padding: var(--scale-7) 0;
 }
 
+.add-bookmark {
+  background: lightgrey;
+  padding: var(--scale-7);
+}
+
+.add-bookmark--header {
+  padding-bottom: var(--scale-6);
+}
+
 .add-bookmark--row {
   display: flex;
   align-items: baseline;
@@ -126,10 +135,17 @@ h2 {
 
 .add-bookmark--text-box {
   height: 7.451em;
+  resize: none;
 }
 
 .add-bookmark--rating-field {
   flex: 0 0 3em;
+}
+
+.add-bookmark--text-field,
+.add-bookmark--text-box,
+.add-bookmark--rating-field {
+  border: 1px solid #cccccc;
 }
 
 .add-bookmark--submit-btn {
