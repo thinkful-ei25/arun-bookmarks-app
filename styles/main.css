@@ -25,8 +25,7 @@ body {
 }
 
 .page-banner {
-  padding-top: var(--scale-6);
-  padding-bottom: var(--scale-6);
+  padding:  1.512em 0 1em;
 }
 
 p,
@@ -45,7 +44,7 @@ select {
 
 button:hover,
 select:hover {
-  border-bottom-color: black;
+  border-color: black;
 }
 
 select {
@@ -55,7 +54,8 @@ select {
 }
 
 h1 {
-  font-size: var(--scale-1);
+  font-size: var(--scale-2);
+  font-family: "Bowlby One", serif;
 }
 
 h2 {
@@ -66,15 +66,16 @@ h2 {
 .app-controls {
   display: flex;
   justify-content: space-between;
+  padding: var(--scale-7) 0;
 }
 
 .bookmark {
-  margin: 0.512em 0;
+  padding: var(--scale-7) 0;
 }
 
 .bookmark--header,
 .bookmark--details {
-  padding: 0.512em 0.42em;
+  padding: var(--scale-7) var(--scale-8);
 }
 
 .bookmark--header {
