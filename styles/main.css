@@ -152,3 +152,15 @@ h2 {
   display: block;
   margin-left: auto;
 }
+
+@media screen and (min-width: 768px) {
+  body {
+    max-width: 672px;
+    margin: 0 auto;
+  }
+  
+  h1 {
+    font-size: var(--scale-1);
+    text-align: center;
+  }
+}
