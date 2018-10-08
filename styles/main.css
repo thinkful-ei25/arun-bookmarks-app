@@ -101,3 +101,38 @@ h2 {
 .bookmark--description {
   padding: var(--scale-7) 0;
 }
+
+.add-bookmark--row {
+  display: flex;
+  align-items: baseline;
+  padding: var(--scale-8) 0;
+}
+
+.add-bookmark--label {
+  flex: 0 0 33%;
+  text-align: right;
+  padding-right: var(--scale-6);
+}
+
+.add-bookmark--label__optional {
+  font-style: italic;
+  font-size: var(--scale-6);
+}
+
+.add-bookmark--text-field,
+.add-bookmark--text-box {
+  flex: 0 0 66%;
+}
+
+.add-bookmark--text-box {
+  height: 7.451em;
+}
+
+.add-bookmark--rating-field {
+  flex: 0 0 3em;
+}
+
+.add-bookmark--submit-btn {
+  display: block;
+  margin-left: auto;
+}

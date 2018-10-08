@@ -113,32 +113,34 @@ const bookmarks = (function bookmarksModule() {
       </header>
       ${store.errorMessage ? renderErrorSection() : ''}
       <form class="js-add-bookmark-form">
-        <div>
-          <label for="title">Title</label>
-          <input type="text" name="title" id="title">
+        <div class="add-bookmark--row">
+          <label class="add-bookmark--label" for="title">Title</label>
+          <input type="text" class="add-bookmark--text-field" name="title" id="title">
         </div>
-        <div>
-          <label for="url">URL</label>
-          <input type="url" name="url" id="url">
+        <div class="add-bookmark--row">
+          <label class="add-bookmark--label" for="url">URL</label>
+          <input type="url" class="add-bookmark--text-field" name="url" id="url">
         </div>
-        <div>
-          <label for="description">Description <span>Optional</span></label>
+        <div class="add-bookmark--row">
+          <label class="add-bookmark--label" for="description">Description <span class="add-bookmark--label__optional">Optional</span></label>
           <textarea
               name="desc"
-              id="description"></textarea>
+              id="description"
+              class="add-bookmark--text-box"></textarea>
         </div>
-        <div>
-          <label for="rating">Rating <span>Optional</span></label>
+        <div class="add-bookmark--row">
+          <label class="add-bookmark--label" for="rating">Rating <span class="add-bookmark--label__optional">Optional</span></label>
           <input
               type="number"
               name="rating"
               id="rating"
               min="1"
               max="${store.MAX_RATING}"
-              step="1">
+              step="1"
+              class="add-bookmark--rating-field">
         </div>
 
-          <button type="submit">Submit</button>
+          <button type="submit" class="add-bookmark--submit-btn">Submit</button>
       </form>
     `;
   }
