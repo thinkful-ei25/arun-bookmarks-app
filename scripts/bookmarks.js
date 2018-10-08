@@ -15,12 +15,14 @@ const bookmarks = (function bookmarksModule() {
   }
 
   function renderExpandedBookmark(bookmark) {
-    const description = bookmark.description ? `<p>${bookmark.description}</p>` : '';
+    const description = bookmark.description ? `<p class="bookmark--description">${bookmark.description}</p>` : '';
     return `
-      ${description}
-      <div>
-        <a href="${bookmark.url}"><button type="button">Visit Site</button></a>
-        <button class="js-delete-bookmark" type="button" title="Delete bookmark" aria-label="Delete bookmark"><i class="far fa-trash-alt" aria-hidden="true"></i></button>
+      <div class="bookmark--details">
+        ${description}
+        <div class="bookmark--controls">
+          <a href="${bookmark.url}"><button type="button">Visit Site</button></a>
+          <button class="js-delete-bookmark bookmark--delete-btn" type="button" title="Delete bookmark" aria-label="Delete bookmark"><i class="far fa-trash-alt" aria-hidden="true"></i></button>
+        </div>
       </div>
     `;
   }
@@ -31,12 +33,12 @@ const bookmarks = (function bookmarksModule() {
       : 'Bookmark is unrated';
     return `
       <li>
-        <article class="js-bookmark" data-bookmark-id="${bookmark.id}">
-          <header class="js-bookmark__header">
+        <article class="js-bookmark bookmark" data-bookmark-id="${bookmark.id}">
+          <header class="js-bookmark__header bookmark--header">
             <h2>${bookmark.title}</h2>
-            <span title="${accessibleRating}" aria-label="${accessibleRating}">
+            <div class="bookmark--rating" title="${accessibleRating}" aria-label="${accessibleRating}">
               ${generateRatingStars(bookmark.rating)}
-            </span>
+            </div>
           </header>
           ${bookmark.isExpanded ? renderExpandedBookmark(bookmark) : ''}
         </article>
@@ -61,7 +63,7 @@ const bookmarks = (function bookmarksModule() {
 
   function renderDisplayControls() {
     return `
-      <section aria-label="Application controls">
+      <section class="app-controls" aria-label="Application controls">
         <button class="js-add-bookmark" type="button">Add Bookmark</button>
         <select class="js-ratings-filter" aria-label="Filter by Rating" title="Filter bookmarks by rating">
           ${renderDropdownOptions()}

@@ -1,0 +1,102 @@
+:root {
+  /* Modular 4/5 */
+  --scale-1: 2.441em;
+  --scale-2: 1.953em;
+  --scale-3: 1.563em;
+  --scale-4: 1.25em;
+  --scale-5: 0.8em;
+  --scale-6: 0.64em;
+  --scale-7: 0.512em;
+  --scale-8: 0.41em;
+}
+
+html * {
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 16px;
+  font-family: "Lato", sans-serif;
+}
+
+
+body {
+  padding: 0 1.875em;
+}
+
+.page-banner {
+  padding-top: var(--scale-6);
+  padding-bottom: var(--scale-6);
+}
+
+p,
+label {
+  font-weight: 300;
+}
+
+button,
+select {
+  border-radius: 4px;
+  background: dimgrey;
+  color: white;
+  border: 1px solid darkgrey;
+  padding: var(--scale-7) var(--scale-6);
+}
+
+button:hover,
+select:hover {
+  border-bottom-color: black;
+}
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+h1 {
+  font-size: var(--scale-1);
+}
+
+h2 {
+  font-size: var(--scale-2);
+  font-weight: 300;
+}
+
+.app-controls {
+  display: flex;
+  justify-content: space-between;
+}
+
+.bookmark {
+  margin: 0.512em 0;
+}
+
+.bookmark--header,
+.bookmark--details {
+  padding: 0.512em 0.42em;
+}
+
+.bookmark--header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bookmark--controls {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--scale-8);
+}
+
+.bookmark--header {
+  background: darkgrey;
+}
+
+.bookmark--details {
+  background: lightgrey;
+}
+
+.bookmark--description {
+  padding: var(--scale-7) 0;
+}
