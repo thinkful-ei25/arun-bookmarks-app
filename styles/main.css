@@ -16,7 +16,6 @@
   --color-primary-2: hsl(6, 100%, 93%);
   --color-primary-3: hsl(6, 100%, 96%);
   --color-primary-4: hsl(5, 32%, 87%);
-  --color-primary-5: hsl(6, 100%, 80%);
 
   --color-secondary-1-0: hsl(189, 8%, 83%); /* Main Secondary color (1) */
   --color-secondary-1-1: hsl(189, 18%, 58%);
@@ -29,6 +28,15 @@
   --color-secondary-2-2: hsl(83, 58%, 88%);
   --color-secondary-2-3: hsl(81, 31%, 89%);
   --color-secondary-2-4: hsl(83, 21%, 80%);
+
+  --c-display-text: hsl(6, 100%, 80%);
+  --c-background-light: var(--color-primary-0);
+  --c-background-dark: var(--color-primary-4);
+  --c-ui-background: var(--color-secondary-1-1);
+  --c-ui-border-normal: var(--color-secondary-1-2);
+  --c-ui-border-light: var(--color-secondary-1-0);
+  --c-ui-border-active: var(--color-secondary-1-4);
+  --c-ui-text: var(--color-secondary-2-0);
 }
 
 html * {
@@ -56,15 +64,15 @@ label {
 button,
 select {
   border-radius: 4px;
-  background: var(--color-secondary-1-1);
-  color: var(--color-secondary-2-0);
-  border: 1px solid var(--color-secondary-1-2);
+  background: var(--c-ui-background);
+  color: var(--c-ui-text);
+  border: 1px solid var(--c-ui-border-normal);
   padding: var(--scale-7) var(--scale-6);
 }
 
 button:hover,
 select:hover {
-  border-color: var(--color-secondary-1-4);
+  border-color: var(--c-ui-border-active);
   border-width: 2px;
 }
 
@@ -77,7 +85,7 @@ select {
 h1 {
   font-size: var(--scale-3);
   font-family: 'Bowlby One', serif;
-  color: var(--color-primary-5);
+  color: var(--c-display-text);
   text-align: center;
 }
 
@@ -114,11 +122,11 @@ h2 {
 }
 
 .bookmark--header {
-  background: var(--color-primary-4);
+  background: var(--c-background-dark);
 }
 
 .bookmark--details {
-  background: var(--color-primary-0);
+  background: var(--c-background-light);
 }
 
 .bookmark--description {
@@ -126,7 +134,7 @@ h2 {
 }
 
 .add-bookmark {
-  background: var(--color-primary-0);
+  background: var(--c-background-light);
   padding: var(--scale-7);
 }
 
@@ -168,7 +176,7 @@ h2 {
 .add-bookmark--text-field,
 .add-bookmark--text-box,
 .add-bookmark--rating-field {
-  border: 1px solid var(--color-secondary-1-0);
+  border: 1px solid var(--c-ui-border-light);
 }
 
 .add-bookmark--submit-btn {
