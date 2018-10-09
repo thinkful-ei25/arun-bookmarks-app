@@ -8,6 +8,26 @@
   --scale-6: 0.64em;
   --scale-7: 0.512em;
   --scale-8: 0.41em;
+
+  /* Colors */
+  /* http://paletton.com/palette.php?uid=3040u0k18O17rzm4NFO2nx-35tf */
+  --color-primary-0: #fff7f6; /* Main Primary color */
+  --color-primary-1: #ffc9c4;
+  --color-primary-2: #ffddd9;
+  --color-primary-3: #ffeeec;
+  --color-primary-4: #e9d5d3;
+
+  --color-secondary-1-0: #d0d6d7; /* Main Secondary color (1) */
+  --color-secondary-1-1: #81a1a7;
+  --color-secondary-1-2: #a2babe;
+  --color-secondary-1-3: #96a0a2;
+  --color-secondary-1-4: #828d8f;
+
+  --color-secondary-2-0: #f4f7ee; /* Main Secondary color (2) */
+  --color-secondary-2-1: #d9eeb6;
+  --color-secondary-2-2: #e4f2ce;
+  --color-secondary-2-3: #e6ecdb;
+  --color-secondary-2-4: #cfd7c2;
 }
 
 html * {
@@ -36,15 +56,15 @@ label {
 button,
 select {
   border-radius: 4px;
-  background: dimgrey;
-  color: white;
-  border: 1px solid darkgrey;
+  background: var(--color-secondary-1-1);
+  color: var(--color-secondary-2-0);
+  border: 1px solid var(--color-secondary-1-2);
   padding: var(--scale-7) var(--scale-6);
 }
 
 button:hover,
 select:hover {
-  border-color: black;
+  border-color: var(--color-secondary-1-4);
 }
 
 select {
@@ -56,6 +76,7 @@ select {
 h1 {
   font-size: var(--scale-2);
   font-family: "Bowlby One", serif;
+  color: var(--color-secondary-1-4);
 }
 
 h2 {
@@ -91,11 +112,11 @@ h2 {
 }
 
 .bookmark--header {
-  background: darkgrey;
+  background: var(--color-primary-4);
 }
 
 .bookmark--details {
-  background: lightgrey;
+  background: var(--color-primary-0);
 }
 
 .bookmark--description {
@@ -103,7 +124,7 @@ h2 {
 }
 
 .add-bookmark {
-  background: lightgrey;
+  background: var(--color-primary-0);
   padding: var(--scale-7);
 }
 
@@ -145,7 +166,7 @@ h2 {
 .add-bookmark--text-field,
 .add-bookmark--text-box,
 .add-bookmark--rating-field {
-  border: 1px solid #cccccc;
+  border: 1px solid var(--color-secondary-1-0);
 }
 
 .add-bookmark--submit-btn {
